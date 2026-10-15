@@ -43,24 +43,24 @@ dialog label{font-size:13px;font-weight:700;display:block;margin:18px 0 8px}dial
 <main>
 <section class="hero"><div class="eyebrow">ESTADÍSTICAS DE ALTA IMPORTANCIA</div><div class="sparkle" aria-hidden="true">✳</div><h1>El tiempo<br><span>corre.</span></h1><p class="subtitle">Tres preguntas que la humanidad necesitaba responder. Una sola página para resolverlas.</p></section>
 <section class="cards" aria-label="Los tres contadores">
-<article class="card cris"><div class="card-top"><span class="card-label">01 / OPERACIÓN REGRESO</span><span class="symbol" aria-hidden="true">⚽</span></div><div class="number" id="crisNumber">299</div><div class="unit">DESCARGAS RESTANTES</div><h2>Cris vuelve<br>a las canchas.</h2><p>La gloria está cerca. Solo faltan unas cuantas descargas.</p></article>
+<article class="card cris"><div class="card-top"><span class="card-label">01 / OPERACIÓN REGRESO</span><span class="symbol" aria-hidden="true"><svg width="58" height="51" viewBox="0 0 58 51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 1C21 9 13 18 13 27a13 13 0 0 0 26 0C39 18 30 9 25 1Z" fill="#fff" stroke="#24221d" stroke-width="1.5"/><path d="M9 22C6 28 2 32 2 38a9 9 0 0 0 18 0c0-5-6-12-11-16Z" fill="#fff" stroke="#24221d" stroke-width="1.5"/><path d="M49 21c-4 7-8 12-8 17a8 8 0 0 0 16 0c0-5-4-11-8-17Z" fill="#fff" stroke="#24221d" stroke-width="1.5"/></svg></span></div><div class="number" id="crisNumber">299</div><div class="unit">DESCARGAS RESTANTES</div><h2>Cris vuelve<br>a las canchas.</h2><p>La gloria está cerca. Solo faltan unas cuantas descargas.</p></article>
 <article class="card halloween"><div class="card-top"><span class="card-label">02 / CUENTA REGRESIVA</span><span class="symbol" aria-hidden="true">🎃</span></div><div class="number" id="halloweenNumber">—</div><div class="unit">DÍAS RESTANTES</div><h2>Se viene<br>Halloween.</h2><p>31 de octubre. El terror tiene fecha.</p></article>
 <article class="card maxi"><div class="card-top"><span class="card-label">03 / EVENTO HISTÓRICO</span><span class="symbol" aria-hidden="true">🎂</span></div><div class="number" id="birthdayNumber">—</div><div class="unit">DÍAS RESTANTES</div><h2>Cumpleaños<br>del Maxi.</h2><p>1 de diciembre. Una fecha para la posteridad.</p></article>
 </section></main>
-<footer class="note"><span class="foot">Hecho con amor, ansiedad y precisión absolutamente innecesaria. © Duendecillos</span><button class="settings" id="editBtn" type="button">✎ Actualizar descargas de Cris</button></footer>
+<footer class="note"><span class="foot">Hecho con amor, ansiedad y precisión absolutamente innecesaria. © Duendecillos</span></footer>
 </div>
-<dialog id="editDialog" aria-labelledby="dialogTitle"><form method="dialog" id="downloadForm"><h3 id="dialogTitle">¿Cuántas le faltan a Cris?</h3><p>Modifica el número de descargas restantes. El cambio queda guardado <strong>solo en este navegador</strong>, no en los demás visitantes.</p><label for="downloadsInput">Descargas restantes</label><input id="downloadsInput" type="number" min="0" step="1" required><div class="actions"><button value="save" class="save">Guardar</button><button value="cancel" class="cancel" formnovalidate>Cancelar</button></div></form></dialog>
+
 <script>
-const DESCARGAS_INICIALES=299;
-const STORAGE_KEY='duendecillos-descargas-restantes',tz='America/Santiago';
+const DESCARGAS_INICIALES=299, INTERVALO_DESCARGAS=5000;
+const tz='America/Santiago';
 const display=(id,value)=>{document.getElementById(id).textContent=new Intl.NumberFormat('es-CL').format(value)};
 function todayChile(){const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date());const get=t=>Number(p.find(i=>i.type===t).value);return{year:get('year'),month:get('month'),day:get('day')}}
 function daysUntil(month,day){const now=todayChile(),current=Date.UTC(now.year,now.month-1,now.day);let target=Date.UTC(now.year,month-1,day);if(target<current)target=Date.UTC(now.year+1,month-1,day);return Math.round((target-current)/86400000)}
 function updateDates(){display('halloweenNumber',daysUntil(10,31));display('birthdayNumber',daysUntil(12,1))}
-function currentDownloads(){const s=localStorage.getItem(STORAGE_KEY);return s!==null&&/^\d+$/.test(s)?Number(s):DESCARGAS_INICIALES}
-display('crisNumber',currentDownloads());updateDates();setInterval(updateDates,60000);
-const dialog=document.getElementById('editDialog'),field=document.getElementById('downloadsInput');
-document.getElementById('editBtn').addEventListener('click',()=>{field.value=currentDownloads();dialog.showModal()});
-document.getElementById('downloadForm').addEventListener('submit',event=>{if(event.submitter?.value!=='save'||!field.checkValidity())return;const value=Math.max(0,Math.floor(Number(field.value)));if(!Number.isSafeInteger(value))return;localStorage.setItem(STORAGE_KEY,String(value));display('crisNumber',value)});
+let descargasRestantes=DESCARGAS_INICIALES;
+display('crisNumber',descargasRestantes);
+setInterval(()=>{descargasRestantes=Math.max(0,descargasRestantes-1);display('crisNumber',descargasRestantes)},INTERVALO_DESCARGAS);
+updateDates();
+setInterval(updateDates,60000);
 </script>
 </body></html>
