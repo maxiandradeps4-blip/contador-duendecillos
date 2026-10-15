@@ -60,7 +60,7 @@ dialog label{font-size:13px;font-weight:700;display:block;margin:18px 0 8px}dial
 </div>
 
 <script>
-const DESCARGAS_INICIALES=299, INTERVALO_DESCARGAS=5000;
+const DESCARGAS_INICIALES=299, INTERVALO_DESCARGAS=3000;
 const tz='America/Santiago';
 const display=(id,value)=>{document.getElementById(id).textContent=new Intl.NumberFormat('es-CL').format(value)};
 function todayChile(){const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date());const get=t=>Number(p.find(i=>i.type===t).value);return{year:get('year'),month:get('month'),day:get('day')}}
