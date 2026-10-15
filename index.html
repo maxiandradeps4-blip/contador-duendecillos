@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171426">
+<title>Contador Duendecillos ✳</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#171426;--ink:#fcf8e9;--muted:#b8b2c8;--lime:#d9fc75;--lilac:#d6b8ff;--orange:#ffc18b}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);background:radial-gradient(ellipse at 20% -10%,#332847,transparent 47%),var(--bg);font-family:'DM Sans',Arial,sans-serif}
+.wrap{max-width:1220px;margin:auto;padding:38px clamp(20px,5vw,64px) 45px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #484153;padding-bottom:22px}
+.brand{font-weight:800;letter-spacing:-.045em;font-size:19px}.brand i{font-style:normal;color:var(--lime);font-size:27px;vertical-align:middle;margin-right:7px}
+.live{display:flex;align-items:center;gap:9px;color:#c8c2d4;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+.dot{height:8px;width:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 15px var(--lime)}
+.hero{padding:73px 0 53px;position:relative}.eyebrow{color:var(--lime);text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.21em}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(58px,10.7vw,137px);line-height:.85;letter-spacing:-.09em;font-weight:700;margin:24px 0 25px;max-width:900px}
+h1 span{color:var(--lime)}.subtitle{font-size:clamp(16px,2vw,20px);line-height:1.55;color:#bbb4cc;margin:0;max-width:620px}
+.sparkle{position:absolute;right:4%;top:45px;font-size:clamp(74px,11vw,144px);color:var(--lilac);transform:rotate(-14deg);line-height:1;user-select:none}
+.cards{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px;margin:4px 0 44px}
+.card{border-radius:22px;min-height:374px;padding:30px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cris{background:var(--lime);color:#24221d}.halloween{background:var(--lilac);color:#282036}.maxi{background:var(--orange);color:#3a271b}
+.card-top{display:flex;justify-content:space-between;align-items:start;gap:10px}.card-label{font-size:12px;text-transform:uppercase;font-weight:800;letter-spacing:.15em}.symbol{font-size:34px;line-height:1}
+.number{font-family:'Space Grotesk',sans-serif;letter-spacing:-.095em;font-size:clamp(78px,9vw,130px);line-height:1;font-weight:700;margin:auto 0 3px;font-variant-numeric:tabular-nums}
+.unit{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.16em;margin-bottom:24px}
+.card h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(23px,2.65vw,31px);line-height:1.06;letter-spacing:-.055em;margin:0 0 9px}
+.card p{line-height:1.45;font-size:14px;font-weight:500;margin:0;opacity:.74;max-width:245px}
+.note{display:flex;gap:12px;align-items:center;justify-content:space-between;border-top:1px solid #494253;padding-top:24px;flex-wrap:wrap}
+.foot{font-size:13px;color:var(--muted)}.settings{border:1px solid #6e647f;background:transparent;color:#e2dbea;border-radius:99px;padding:11px 17px;font:700 12px 'DM Sans',sans-serif;cursor:pointer}
+.settings:hover{background:#302a3f;border-color:var(--lilac)}
+dialog{border:1px solid #625977;background:#262033;color:var(--ink);border-radius:22px;padding:27px;width:min(430px,calc(100vw - 32px));box-shadow:0 25px 100px #0009}
+dialog::backdrop{background:#08070aca;backdrop-filter:blur(5px)}dialog h3{margin:0 0 8px;font-size:25px;letter-spacing:-.05em}dialog p{font-size:14px;line-height:1.5;color:#c7c0d2}
+dialog label{font-size:13px;font-weight:700;display:block;margin:18px 0 8px}dialog input{width:100%;background:#171426;border:1px solid #766b87;color:white;border-radius:10px;padding:13px;font-size:22px}
+.actions{display:flex;gap:9px;margin-top:18px}dialog button{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}.save{background:var(--lime);color:#221e2a}.cancel{background:#494054;color:white}
+@media(max-width:950px){.cards{grid-template-columns:1fr 1fr}.cris{grid-column:span 2}.card{min-height:340px}.sparkle{right:0;top:40px;opacity:.55}}
+@media(max-width:600px){.wrap{padding:24px 18px 33px}.topline{padding-bottom:16px}.hero{padding:64px 0 40px}.sparkle{top:26px;right:8px;font-size:74px;opacity:.5}h1{font-size:clamp(58px,14vw,84px);margin:19px 0 22px}.cards{grid-template-columns:1fr;gap:12px}.cris{grid-column:auto}.card{min-height:315px;padding:24px}.number{font-size:112px}.card h2{font-size:29px}.live{font-size:10px}.brand{font-size:17px}}
+@media(prefers-reduced-motion:no-preference){.card{transition:transform .25s ease}.card:hover{transform:translateY(-5px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topline"><div class="brand"><i>✳</i> CONTADOR DUENDECILLOS</div><div class="live"><span class="dot"></span> CONTANDO EN VIVO</div></header>
+<main>
+<section class="hero"><div class="eyebrow">ESTADÍSTICAS DE ALTA IMPORTANCIA</div><div class="sparkle" aria-hidden="true">✳</div><h1>El tiempo<br><span>corre.</span></h1><p class="subtitle">Tres preguntas que la humanidad necesitaba responder. Una sola página para resolverlas.</p></section>
+<section class="cards" aria-label="Los tres contadores">
+<article class="card cris"><div class="card-top"><span class="card-label">01 / OPERACIÓN REGRESO</span><span class="symbol" aria-hidden="true">⚽</span></div><div class="number" id="crisNumber">299</div><div class="unit">DESCARGAS RESTANTES</div><h2>Cris vuelve<br>a las canchas.</h2><p>La gloria está cerca. Solo faltan unas cuantas descargas.</p></article>
+<article class="card halloween"><div class="card-top"><span class="card-label">02 / CUENTA REGRESIVA</span><span class="symbol" aria-hidden="true">🎃</span></div><div class="number" id="halloweenNumber">—</div><div class="unit">DÍAS RESTANTES</div><h2>Se viene<br>Halloween.</h2><p>31 de octubre. El terror tiene fecha.</p></article>
+<article class="card maxi"><div class="card-top"><span class="card-label">03 / EVENTO HISTÓRICO</span><span class="symbol" aria-hidden="true">🎂</span></div><div class="number" id="birthdayNumber">—</div><div class="unit">DÍAS RESTANTES</div><h2>Cumpleaños<br>del Maxi.</h2><p>1 de diciembre. Una fecha para la posteridad.</p></article>
+</section></main>
+<footer class="note"><span class="foot">Hecho con amor, ansiedad y precisión absolutamente innecesaria. © Duendecillos</span><button class="settings" id="editBtn" type="button">✎ Actualizar descargas de Cris</button></footer>
+</div>
+<dialog id="editDialog" aria-labelledby="dialogTitle"><form method="dialog" id="downloadForm"><h3 id="dialogTitle">¿Cuántas le faltan a Cris?</h3><p>Modifica el número de descargas restantes. El cambio queda guardado <strong>solo en este navegador</strong>, no en los demás visitantes.</p><label for="downloadsInput">Descargas restantes</label><input id="downloadsInput" type="number" min="0" step="1" required><div class="actions"><button value="save" class="save">Guardar</button><button value="cancel" class="cancel" formnovalidate>Cancelar</button></div></form></dialog>
+<script>
+const DESCARGAS_INICIALES=299;
+const STORAGE_KEY='duendecillos-descargas-restantes',tz='America/Santiago';
+const display=(id,value)=>{document.getElementById(id).textContent=new Intl.NumberFormat('es-CL').format(value)};
+function todayChile(){const p=new Intl.DateTimeFormat('en-US',{timeZone:tz,year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date());const get=t=>Number(p.find(i=>i.type===t).value);return{year:get('year'),month:get('month'),day:get('day')}}
+function daysUntil(month,day){const now=todayChile(),current=Date.UTC(now.year,now.month-1,now.day);let target=Date.UTC(now.year,month-1,day);if(target<current)target=Date.UTC(now.year+1,month-1,day);return Math.round((target-current)/86400000)}
+function updateDates(){display('halloweenNumber',daysUntil(10,31));display('birthdayNumber',daysUntil(12,1))}
+function currentDownloads(){const s=localStorage.getItem(STORAGE_KEY);return s!==null&&/^\d+$/.test(s)?Number(s):DESCARGAS_INICIALES}
+display('crisNumber',currentDownloads());updateDates();setInterval(updateDates,60000);
+const dialog=document.getElementById('editDialog'),field=document.getElementById('downloadsInput');
+document.getElementById('editBtn').addEventListener('click',()=>{field.value=currentDownloads();dialog.showModal()});
+document.getElementById('downloadForm').addEventListener('submit',event=>{if(event.submitter?.value!=='save'||!field.checkValidity())return;const value=Math.max(0,Math.floor(Number(field.value)));if(!Number.isSafeInteger(value))return;localStorage.setItem(STORAGE_KEY,String(value));display('crisNumber',value)});
+</script>
+</body></html>
